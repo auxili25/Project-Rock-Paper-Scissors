@@ -16,13 +16,13 @@ buttons.forEach((button) => {
 });
 
 function getComputerChoice(){
-    let computer = ["rock", "paper", "scissor"];
+    let computer = ["rock", "paper", "scissors"];
     let random = computer[Math.floor(Math.random() * computer.length)];
     return random;
   }
  
   function playerSelections(){
-    let selection=prompt("rock, paper, scissor:");
+    let selection=prompt("rock, paper, scissors:");
     let result = selection.toLowerCase();
     return result;
   }  
@@ -33,16 +33,16 @@ function getComputerChoice(){
         return "tie";
     }else if(playerSelection == "rock" && computerSelection == "paper"){
         return "You loses! paper beats rock";
-    }else if(playerSelection =="scissor"&& computerSelection== "paper"){
-        return "You win! scissor beats paper";
+    }else if(playerSelection =="scissors"&& computerSelection== "paper"){
+        return "You win! scissors beats paper";
     }else if(playerSelection=="rock"&& computerSelection=="scissor"){
-        return "You win! rock beats scissor";
+        return "You win! rock beats scissors";
     }else if(playerSelection=="paper" && computerSelection=="rock"){
         return "You win! paper beats rock";
-    }else if(playerSelection=="paper"&& computerSelection=="scissor"){
-        return "You loses! scissor beats paper";  
-    }else if(playerSelection=="scissor" && computerSelection=="rock"){
-        return "You loses! rock beats scissor";
+    }else if(playerSelection=="paper"&& computerSelection=="scissors"){
+        return "You loses! scissors beats paper";  
+    }else if(playerSelection=="scissors" && computerSelection=="rock"){
+        return "You loses! rock beats scissors";
     }
 }
 
@@ -51,7 +51,7 @@ function getComputerChoice(){
   let playerPoints = 0;
   let computerPoints = 0;
   for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt("Rock, paper or scissors:").toLowerCase();
+    const playerSelection = prompt("rock, paper or scissors:").toLowerCase();
     const computerSelection = getComputerChoice();
     if (playsSingleRound(playerSelection, computerSelection) === `It's a tie ${playerSelection} is equal to ${computerSelection}`) {
       console.log(playsSingleRound(playerSelection, computerSelection));
