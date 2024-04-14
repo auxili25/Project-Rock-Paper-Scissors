@@ -5,8 +5,7 @@ const resultEl= document.getElementById("result");
 const playerPointsEl = document.getElementById("player-points");
 const computerPointsEl = document.getElementById("computer-points");
 
-let playerPoints = 0;
-let computerPoints = 0;
+
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -16,63 +15,66 @@ buttons.forEach((button) => {
 });
 
 function getComputerChoice(){
-    let computer = ["rock", "paper", "scissors"];
-    let random = computer[Math.floor(Math.random() * computer.length)];
-    return random;
-  }
- 
-  function playerSelections(){
-    let selection=prompt("rock, paper, scissors:");
-    let result = selection.toLowerCase();
-    return result;
-  }  
- 
-  function playsSingleRound (playerSelection,computerSelection){
-   
-    if(playerSelection == computerSelection){
-        return "tie";
-    }else if(playerSelection == "rock" && computerSelection == "paper"){
-        return "You loses! paper beats rock";
-    }else if(playerSelection =="scissors"&& computerSelection== "paper"){
-        return "You win! scissors beats paper";
-    }else if(playerSelection=="rock"&& computerSelection=="scissor"){
-        return "You win! rock beats scissors";
-    }else if(playerSelection=="paper" && computerSelection=="rock"){
-        return "You win! paper beats rock";
-    }else if(playerSelection=="paper"&& computerSelection=="scissors"){
-        return "You loses! scissors beats paper";  
-    }else if(playerSelection=="scissors" && computerSelection=="rock"){
-        return "You loses! rock beats scissors";
-    }
+  let computer = ["rock", "paper", "scissor"];
+  let random = computer[Math.floor(Math.random() * computer.length)];
+  return random;
 }
 
- 
-  function playGame() {
-  let playerPoints = 0;
-  let computerPoints = 0;
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt("rock, paper or scissors:").toLowerCase();
-    const computerSelection = getComputerChoice();
-    if (playsSingleRound(playerSelection, computerSelection) === `It's a tie ${playerSelection} is equal to ${computerSelection}`) {
-      console.log(playsSingleRound(playerSelection, computerSelection));
-    } else if (playsSingleRound(playerSelection, computerSelection) === `You win ${playerSelection} beats ${computerSelection}`) {
-      playerPoints++;
-      
-      console.log(playsSingleRound(playerSelection, computerSelection));
-    } else {
-      computerPoints++;
-      
-      console.log(playsSingleRound(playerSelection, computerSelection));
-    }
-  }
+function playerSelections(){
+  let selection=prompt("rock, paper, scissor:");
+  let result = selection.toLowerCase();
+  return result;
+}  
 
-  if (playerPoints > computerPoints) {
-    console.log(`Congratulations, you got ${playerPoints} and the computer got ${computerPoints}`);
-  } else if (playerPoints < computerPoints) {
-    console.log(`Game Over, you got ${playerPoints} and the computer got ${computerPoints}`);
-  } else {
-    console.log(`It's a tie, you got ${playerPoints} and the computer got ${computerPoints}`);
+function playsSingleRound (playerSelection,computerSelection){
+ 
+  if(playerSelection == computerSelection){
+      return "tie";
+  }else if(playerSelection == "rock" && computerSelection == "paper"){
+      return "You loses! paper beats rock";
+  }else if(playerSelection =="scissor"&& computerSelection== "paper"){
+      return "You win! scissor beats paper";
+  }else if(playerSelection=="rock"&& computerSelection=="scissor"){
+      return "You win! rock beats scissor";
+  }else if(playerSelection=="paper" && computerSelection=="rock"){
+      return "You win! paper beats rock";
+  }else if(playerSelection=="paper"&& computerSelection=="scissor"){
+      return "You loses! scissor beats paper";  
+  }else if(playerSelection=="scissor" && computerSelection=="rock"){
+      return "You loses! rock beats scissor";
   }
 }
 
-playGame();
+
+let playerPoints = 0;
+let computerPoints = 0;
+
+function playGame(){
+let playerSelection = playerSelections();
+let computerSelection = getComputerChoice();
+let result = playsSingleRound(playerSelection, computerSelection);
+
+if (result.includes("win")) {
+  playerPoints++;
+} else if (result.includes("loses")) {
+  computerPoints++;
+}
+
+console.log("Player Points: " + playerPoints + " | Computer Points: " + computerPoints);
+
+if (playerPoints === 3) {
+  return "¡Congratulations! You have won the game!";
+} else if (computerPoints === 3) {
+  return "The computer has won the game sorry!";
+} else {
+  return result;
+}
+}
+
+for(let i = 0; i < 5; i++){
+let gameResult = playGame();
+console.log(gameResult);
+if (gameResult.includes("Congratulations") || gameResult.includes("sorry")) {
+  break;
+}
+}
