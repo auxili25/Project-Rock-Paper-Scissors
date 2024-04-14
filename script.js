@@ -1,3 +1,20 @@
+const buttons = document.querySelectorAll('button');
+
+const resultEl= document.getElementById("result");
+
+const playerPointsEl = document.getElementById("player-points");
+const computerPointsEl = document.getElementById("computer-points");
+
+let playerPoints = 0;
+let computerPoints = 0;
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+   const result = playsSingleRound(button.id, getComputerChoice());
+   resultEl.textContent = result;
+  });
+});
+
 function getComputerChoice(){
     let computer = ["rock", "paper", "scissor"];
     let random = computer[Math.floor(Math.random() * computer.length)];
@@ -40,9 +57,11 @@ function getComputerChoice(){
       console.log(playsSingleRound(playerSelection, computerSelection));
     } else if (playsSingleRound(playerSelection, computerSelection) === `You win ${playerSelection} beats ${computerSelection}`) {
       playerPoints++;
+      
       console.log(playsSingleRound(playerSelection, computerSelection));
     } else {
       computerPoints++;
+      
       console.log(playsSingleRound(playerSelection, computerSelection));
     }
   }
