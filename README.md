@@ -4,7 +4,7 @@
 
 > One paragraph statement about the project.
 
-![screenshot](c:\Users\User\Pictures\rock,paper,scissor.png)
+![screenshot](rock,paper,scissor.png)
 
 Additional description about the project and its features.
 
