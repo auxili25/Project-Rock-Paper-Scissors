@@ -16,7 +16,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link](http://127.0.0.1:5501/index.html)
+[Live Demo Link](https://auxili25.github.io/Project-Rock-Paper-Scissors/)
 
 
 ## Getting Started
@@ -52,7 +52,7 @@ To get a local copy up and running follow these simple example steps.
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues page](https://github.com/auxili25/Project-Rock-Paper-Scissors/issues).
 
 ## Show your support
 
