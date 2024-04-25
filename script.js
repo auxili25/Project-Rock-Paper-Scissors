@@ -1,19 +1,3 @@
-const buttons = document.querySelectorAll('button');
-
-const resultEl= document.getElementById("result");
-
-const playerPointsEl = document.getElementById("player-points");
-const computerPointsEl = document.getElementById("computer-points");
-
-
-
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-   const result = playsSingleRound(button.id, getComputerChoice());
-   resultEl.textContent = result;
-  });
-});
-
 function getComputerChoice(){
   let computer = ["rock", "paper", "scissor"];
   let random = computer[Math.floor(Math.random() * computer.length)];
@@ -27,7 +11,6 @@ function playerSelections(){
 }  
 
 function playsSingleRound (playerSelection,computerSelection){
- 
   if(playerSelection == computerSelection){
       return "tie";
   }else if(playerSelection == "rock" && computerSelection == "paper"){
@@ -45,36 +28,34 @@ function playsSingleRound (playerSelection,computerSelection){
   }
 }
 
-
-let playerPoints = 0;
-let computerPoints = 0;
-
+let playerWins = 0;
+let computerWins = 0;
 function playGame(){
-let playerSelection = playerSelections();
-let computerSelection = getComputerChoice();
-let result = playsSingleRound(playerSelection, computerSelection);
+  let playerSelection = playerSelections();
+  let computerSelection = getComputerChoice();
+  let result = playsSingleRound(playerSelection, computerSelection);
 
-if (result.includes("win")) {
-  playerPoints++;
-} else if (result.includes("loses")) {
-  computerPoints++;
+  if (result.includes("win")) {
+      playerWins++;
+  } else if (result.includes("loses")) {
+      computerWins++;
+  }
+
+console.log("Player Wins: " + playerWins + " | Computer Wins: " + computerWins);
+
+  if (playerWins === 3) {
+      return "¡Congratulations! You have won the game! PlayerPoint: " + playerWins + ", ComputerPoints: " + computerWins + ".";
+  } else if (computerWins === 3) {
+      return "The computer has won the game sorry! PlayerPoint: " + playerWins + ", ComputerPoints: " + computerWins + ".";
+  } else {
+      return result;
+  }
 }
 
-console.log("Player Points: " + playerPoints + " | Computer Points: " + computerPoints);
-
-if (playerPoints === 3) {
-  return "¡Congratulations! You have won the game!";
-} else if (computerPoints === 3) {
-  return "The computer has won the game sorry!";
-} else {
-  return result;
-}
-}
-
-for(let i = 0; i < 5; i++){
-let gameResult = playGame();
-console.log(gameResult);
-if (gameResult.includes("Congratulations") || gameResult.includes("sorry")) {
-  break;
-}
+for(let i = 0; i <= 15; i++){
+  let gameResult = playGame();
+  console.log(gameResult);
+    if (gameResult.includes("Congratulations") || gameResult.includes("sorry")) {
+        break;
+  }
 }
